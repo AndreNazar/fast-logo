@@ -1,0 +1,13 @@
+body{
+    margin: 0;
+    background-color: #f1f1f1;
+}
+.main-container{
+    display: flex;
+    gap: 1em;
+    .main-screen{
+        display: grid;
+        width: 100%;
+        gap: 1em;
+    }
+}

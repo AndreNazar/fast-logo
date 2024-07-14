@@ -1,0 +1,77 @@
+@import url("../../styles/fonts.scss");
+
+::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+  
+/* Изменение цвета скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color: #01060e;
+}
+
+/* Удаление стрелок скроллбара */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+.elements-block-container{
+    width: 250px;
+    min-width: 250px;
+    height: 100vh;
+    background-color: #a6b1d1;
+    .tabs-container{
+        display: flex;
+        padding: 1em; 
+        box-sizing: border-box;
+        height: 57px;
+        width: 100%;
+        background-color: #a6b1d1;
+        overflow-x: auto;
+        gap: .5em;
+        .tab{
+            width: fit-content;
+            padding: .2rem .7rem;
+            box-sizing: border-box;
+            font-size: 14px;
+            font-family: "Montserrat";
+            cursor: pointer;
+            background-color: #01060e;
+            color: #f1f1f1;
+            border-radius: 5px;
+            transition: .1s;
+            &.active{
+                background-color: #f1f1f1;
+                color: #a6b1d1;
+            }
+            
+            
+        }
+    }
+    .elements-container{
+      display: grid;
+      overflow-y: auto;
+      height: calc(100% - 57px);
+      justify-content: center;
+      .element-wrapper{
+        display: grid;
+        place-items: center;
+        width: 215px;
+        height: 215px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        margin-bottom: 1em;
+        cursor: pointer;
+        .element{
+          border: 5px solid #a6b1d1;
+          width: 150px;
+          height: 150px;
+          
+        &-circle{border-radius: 100%;}
+        &-square{}
+        &-squircle{border-radius: 10px;}
+        &-triangle{ border: none}
+        }
+      }
+    }
+}

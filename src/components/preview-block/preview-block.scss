@@ -1,0 +1,42 @@
+@import url("../../styles/fonts.scss");
+
+.preview-container{
+    width: 100%;
+    height: calc(70vh - .5em);
+    background-color: #a6b1d1;
+    font-family: 'Montserrat';
+    .preview-wrapper{
+        display: grid;
+        padding: 1em;
+        height: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        .preview-field{
+            width: 60vh;
+            height: 50vh;
+            background-color: #f1f1f1;
+            .preview-background{
+            }
+        }
+        .preview-navigation{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+            gap: 1em;
+            .download-button{
+                background-color: #01060e;
+                color: #f1f1f1;
+                padding: .5em 1em;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;    
+                justify-content: center;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
