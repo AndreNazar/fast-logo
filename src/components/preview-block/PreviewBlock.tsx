@@ -1,15 +1,12 @@
-import { useSelector } from "react-redux"
 import "./preview-block.scss"
+import SVGUpdater from "./SVGUpdater"
 
 function PreviewBlock() {
-  const backgroundProperties = useSelector((s: any) => s.main.backgroundProperties)
     return <div className="preview-container">
       <div className="preview-wrapper">
-        <canvas className="preview-field">
-          <div className={"preview-background bg-" + backgroundProperties.type}></div>
-        </canvas>
+        <SVGUpdater />
         <div className="preview-navigation">
-          <input type="text" /> 
+          <input className="name-input" placeholder="Название файла" type="text" /> 
           <div className="download-button">Скачать</div>
         </div>
       </div>

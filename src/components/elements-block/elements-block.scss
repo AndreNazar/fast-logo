@@ -1,4 +1,5 @@
 @import url("../../styles/fonts.scss");
+@import "../../styles/palette.scss";
 
 ::-webkit-scrollbar {
     width: 3px;
@@ -7,7 +8,7 @@
   
 /* Изменение цвета скроллбара */
 ::-webkit-scrollbar-thumb {
-  background-color: #01060e;
+  background-color: $color2;
 }
 
 /* Удаление стрелок скроллбара */
@@ -19,14 +20,14 @@
     width: 250px;
     min-width: 250px;
     height: 100vh;
-    background-color: #a6b1d1;
+    background-color: $color1;
     .tabs-container{
         display: flex;
         padding: 1em; 
         box-sizing: border-box;
         height: 57px;
         width: 100%;
-        background-color: #a6b1d1;
+        background-color: $color1;
         overflow-x: auto;
         gap: .5em;
         .tab{
@@ -36,13 +37,13 @@
             font-size: 14px;
             font-family: "Montserrat";
             cursor: pointer;
-            background-color: #01060e;
-            color: #f1f1f1;
+            background-color: $color2;
+            color: $color3;
             border-radius: 5px;
             transition: .1s;
             &.active{
-                background-color: #f1f1f1;
-                color: #a6b1d1;
+                background-color: $color3;
+                color: $color1;
             }
             
             
@@ -55,7 +56,6 @@
       justify-content: center;
       .element-wrapper{
         display: grid;
-        place-items: center;
         width: 215px;
         height: 215px;
         background-color: #f1f1f1;
@@ -63,14 +63,8 @@
         margin-bottom: 1em;
         cursor: pointer;
         .element{
-          border: 5px solid #a6b1d1;
-          width: 150px;
-          height: 150px;
-          
-        &-circle{border-radius: 100%;}
-        &-square{}
-        &-squircle{border-radius: 10px;}
-        &-triangle{ border: none}
+          place-self: center;
+          width: 180px;
         }
       }
     }
