@@ -55,14 +55,18 @@
       height: calc(100% - 57px);
       justify-content: center;
       .element-wrapper{
+        position: relative;
         display: grid;
         width: 215px;
         height: 215px;
         background-color: #f1f1f1;
+        justify-content: center;
+        align-items: center;
         border-radius: 5px;
         margin-bottom: 1em;
         cursor: pointer;
         .element{
+          
           place-self: center;
           width: 180px;
         }

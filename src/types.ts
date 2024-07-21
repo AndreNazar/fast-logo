@@ -39,7 +39,8 @@ export enum TextTypes {
 }
 
 export enum IconTypes {
-    SEARCH = "Search",
+    SEARCH = "search",
+    WINDOW = "window",
     NONE = "none"
 }
 

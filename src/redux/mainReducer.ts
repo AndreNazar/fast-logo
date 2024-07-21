@@ -48,14 +48,15 @@ export const mainReducer = createSlice({
 
     iconItems: [
       {name: "Search", type: IconTypes.SEARCH},
+      {name: "Window", type: IconTypes.WINDOW},
     ] as IItems[],
 
 
     backgroundProperties: {
       type: BackgroundTypes.NONE,
-      backgroundColor: "#f1f1f1",
-      borderColor: "#f1f1f1",
-      borderWidth: 0
+      backgroundColor: "#0000",
+      borderColor: "#000000",
+      borderWidth: 1
     } as IBackgroundProperties,
 
     textProperties: {
@@ -68,9 +69,9 @@ export const mainReducer = createSlice({
 
     iconProperties: {
       type: IconTypes.NONE,
-      color: "#f1f1f1",
+      color: "#000000",
       size: 72,
-      align: "left"
+      align: "center"
     } as IIconProperties,
 
 
@@ -85,31 +86,15 @@ export const mainReducer = createSlice({
     selectElement: (state, action) => {
       switch (state.currentTab) {
         case 0: { 
-            state.backgroundProperties = {
-            type: action.payload.type,
-            backgroundColor: "#f1f1f100",
-            borderColor: "#a6b1d1",
-            borderWidth: 5
-          }
+            state.backgroundProperties.type = action.payload.type
           break;
         }
         case 1: {
-            state.textProperties = {
-            type: action.payload.type,
-            text: state.textProperties.text,
-            color: "#000000",
-            size: 72,
-            align: "center"
-          }
+            state.textProperties.type = action.payload.type
           break;
         }
         case 2: {
-            state.iconProperties = {
-            type: action.payload.type,
-            color: "#000000",
-            size: 72,
-            align: "center"
-          }
+            state.iconProperties.type = action.payload.type
           break;
         }
         default:

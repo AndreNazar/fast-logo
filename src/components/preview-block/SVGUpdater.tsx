@@ -1,32 +1,57 @@
 import { useCallback} from "react";
 import { useSelector } from "react-redux"
-import { BackgroundTypes, TextTypes } from "../../types";
-import { CirclePath, SquarePath, SquirclePath, TrianglePath } from "./backgrounds";
-import { OutputText } from "./texts";
+import { BackgroundTypes, IBackgroundProperties, IconTypes, IIconProperties, ITextProperties, TextTypes } from "../../types";
+import GetBackground from "../visual/GetBackground";
+import GetText from "../visual/GetText";
+import GetIcon from "../visual/GetIcon";
 
 const SVGUpdater = () => {
      
-  const backgroundProperties = useSelector((s: any) => s.main.backgroundProperties)
-  const textPtoperties = useSelector((s: any) => s.main.textProperties)
+  const backgroundProperties:IBackgroundProperties = useSelector((s: any) => s.main.backgroundProperties)
+  const textProperties: ITextProperties = useSelector((s: any) => s.main.textProperties)
+  const iconProperties: IIconProperties = useSelector((s: any) => s.main.iconProperties)
 
   const drawBackground = useCallback(() =>{
+
+    const bp = {
+      type: backgroundProperties.type,
+      fill: backgroundProperties.backgroundColor, 
+      stroke: backgroundProperties.borderColor, 
+      strokeWidth: backgroundProperties.borderWidth
+    }
     
-    if(backgroundProperties.type === BackgroundTypes.CIRCLE) return <CirclePath />
-    else if(backgroundProperties.type === BackgroundTypes.SQUARE) return <SquarePath />
-    else if(backgroundProperties.type === BackgroundTypes.SQUIRCLE) return <SquirclePath />
-    else if(backgroundProperties.type === BackgroundTypes.TRIANGLE) return <TrianglePath />
-    return <path className="preview-none"></path>
+    return <GetBackground bp={bp}/>
   }, [backgroundProperties])
 
+  
   const drawText = useCallback(() =>{
    
-   if(textPtoperties.type !== TextTypes.NONE) return <OutputText text={textPtoperties.text} type={textPtoperties.type} color={textPtoperties.color} size={textPtoperties.size} />
-   return <text className="preview-none"></text>
- }, [textPtoperties])
+    const tp = {
+      type: textProperties.type,
+      text: textProperties.text,
+      color: textProperties.color,
+      size: textProperties.size,
+      align: textProperties.align,
+    }
 
+   return <GetText tp={tp} />
+ }, [textProperties])
+  
+
+ const drawIcon = useCallback(() =>{
+  
+  const ip = {
+    type: iconProperties.type,
+    fill: iconProperties.color,
+    size: iconProperties.size,
+    align: iconProperties.align,
+  }
+
+  return <GetIcon ip={ip} />
+}, [iconProperties])
 
     return <div className="preview-field">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">{drawBackground()}{drawText()}</svg>
+      {drawBackground()}{drawIcon()}{drawText()}
     </div>
 }
 

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import "./properties-block.scss"
 import PropertiesBackgroundList from "./background-properties/PropertiesBackgroundList"
-import PropertiesTextList from "./background-properties/PropertiesTextList"
+import PropertiesTextList from "./text-properties/PropertiesTextList"
 
 function PropertiesBlock() {
   const currentTab = useSelector((s: any) => s.main.currentTab)

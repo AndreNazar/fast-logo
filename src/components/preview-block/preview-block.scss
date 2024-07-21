@@ -16,16 +16,18 @@
         justify-items: center;
         gap: 1em;
         .preview-field{
+            position: relative;
             width: 50vh;
             height: 50vh;
             background-color: $color3;
             padding: .5em;
             box-sizing: border-box;
-            path{
+            svg{
                 position: absolute;
             }
-            text{
-                position: absolute;
+            .visual-text, .visual-background{
+                width: calc(100% - 1em);
+                height: calc(100% - 1em);
             }
         }
         .preview-navigation{

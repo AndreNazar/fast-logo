@@ -1,64 +1,50 @@
 import { useDispatch, useSelector } from "react-redux";
-import { BackgroundTypes, TextTypes } from "../../types";
+import { IconTypes, TextTypes, BackgroundTypes, ITextProperties, IBackgroundProperties, IIconProperties } from "../../types";
 import { selectElement } from "../../redux/mainReducer";
-import { CirclePath, SquarePath, SquirclePath, TrianglePath } from "../preview-block/backgrounds";
-import { OutputText } from "../preview-block/texts";
+import GetBackground from "../visual/GetBackground";
+import GetText from "../visual/GetText";
+import GetIcon from "../visual/GetIcon";
 
 const Element = ({element}: any) => {
     const dispatch = useDispatch()
 
-    const textProperties = useSelector((s: any) => s.main.textProperties)
+    const textProperties: ITextProperties = useSelector((s: any) => s.main.textProperties)
+    const backgroundProperties: IBackgroundProperties = useSelector((s: any) => s.main.backgroundProperties)
+    const iconProperties: IIconProperties = useSelector((s: any) => s.main.iconProperties)
+
+    function isType(type: typeof BackgroundTypes | typeof IconTypes | typeof TextTypes, value: string) {
+      return Object.values(type).includes(value)
+    }
     
     function getLayout() {
-        switch (element.type) {
-          case BackgroundTypes.TRIANGLE:
-            return <TrianglePath />
-          case BackgroundTypes.CIRCLE:
-            return <CirclePath />
-          case BackgroundTypes.SQUARE:
-            return <SquarePath />
-          case BackgroundTypes.SQUIRCLE:
-            return <SquirclePath />
-          case TextTypes.ADVENT:
-          case TextTypes.BADSCRIPT:
-          case TextTypes.CAVEAT:
-          case TextTypes.COMFORTAA:
-          case TextTypes.COMFORTERBRUSH:
-          case TextTypes.DIDACTGOTHIC:
-          case TextTypes.FLOWCIRCULAR:
-          case TextTypes.GREATVIBES:
-          case TextTypes.IBMPLEXSERIF:
-          case TextTypes.KABLAMMO:
-          case TextTypes.KELLYSLAB:
-          case TextTypes.LOBSTER:
-          case TextTypes.MONTSERRAT:
-          case TextTypes.MURECHO:
-          case TextTypes.PACIFICO:
-          case TextTypes.PLAY:
-          case TextTypes.REGGAEONE:
-          case TextTypes.RUBIKBROKENFAX:
-          case TextTypes.RUBIKGLITCH:
-          case TextTypes.RUBIKGLITCHPOP:
-          case TextTypes.RUBIKMONOONE:
-          case TextTypes.RUBIKSCRIBBLE:
-          case TextTypes.RUSLANDISPLAY:
-          case TextTypes.RUSSOONE:
-          case TextTypes.STALINISTONE:
-          case TextTypes.STICK:
-          case TextTypes.TINY5:
-          case TextTypes.TRAINONE:
-          case TextTypes.NONE:
-            return (<OutputText text={textProperties.text} type={element.type} color={textProperties.color} size={textProperties.size}/>)
+      const bp = {
+        type: element.type,
+        fill: backgroundProperties.backgroundColor,
+        stroke: backgroundProperties.borderColor,
+        strokeWidth: backgroundProperties.borderWidth,
+      }
+      const tp = {
+        type: element.type,
+        text: textProperties.text,
+        color: textProperties.color,
+        size: textProperties.size,
+        align: textProperties.align,
+      }
+      const ip = {
+        type: element.type,
+        fill: iconProperties.color,
+        size: +iconProperties.size + 50,
+        align: iconProperties.align,
+      }
 
-          default:
-            return <div></div>
-        }
+      if (isType(BackgroundTypes, element.type)) return <GetBackground bp={bp} />
+      if (isType(TextTypes, element.type)) return <GetText tp={tp} />
+      if (isType(IconTypes, element.type)) return <GetIcon ip={ip} />
+      else return <span></span>
     }
 
     return <div className="element-wrapper" onClick={() => dispatch(selectElement(element))}>
-        <svg className={"element element-" + element.type} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
-            {getLayout()}
-        </svg>
+      {getLayout()}
     </div>
 }
 
