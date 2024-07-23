@@ -8,12 +8,20 @@ interface Itp {
   align: TAligns
 }
 
-const GetText = ({ tp }: {tp: Itp}) => (
-  <svg className="visual-text" xmlns="http://www.w3.org/2000/svg" width={215} height={215} viewBox="0 0 150 150">
-    <text textAnchor="middle"  x={72} y={100} fill={tp.color} fontSize={tp.size} style={{ fontFamily: `${tp.type}` }} className="element-text">
-      {tp.text}
-    </text>
-  </svg>
-)
+const getAlign = (align: TAligns) => {
+  switch (align) {
+    case "left": return { x: 0, y: 0.5 }
+    case "center": return "middle"
+    case "right": return "end"
+    default: return "middle"
+  }
+}
+
+const GetText = ({ tp }: { tp: Itp }) => {
+  const align = getAlign(tp.align)
+    return <text textAnchor="middle" x={72} y={100} fill={tp.color} fontSize={tp.size} style={{ fontFamily: `${tp.type}` }} className="element-text">
+        {tp.text}
+      </text>
+}
 
 export default GetText

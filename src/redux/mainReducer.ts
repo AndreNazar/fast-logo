@@ -131,7 +131,20 @@ export const mainReducer = createSlice({
     },
     setTextText: (state, action) => {
       state.textProperties.text = action.payload
-    }
+    },
+    setIconColor: (state, action) => {
+      if(action.payload[0] === "") state.iconProperties.color = "#"
+      else if(action.payload[0] === "#" && action.payload.length <= 7) 
+      state.iconProperties.color = action.payload
+    },
+    setIconSize: (state, action) => {
+      if(action.payload < 0) state.iconProperties.size = 0
+      else if(action.payload > 200) state.iconProperties.size = 200
+      else state.iconProperties.size = action.payload
+    },
+    setIconAlign: (state, action) => {
+      state.iconProperties.align = action.payload
+    },
   },
 })
 
@@ -146,7 +159,10 @@ export const {
   setTextColor,
   setTextSize,
   setTextAlign,
-  setTextText
+  setTextText,
+  setIconColor,
+  setIconSize,
+  setIconAlign
 } = mainReducer.actions
 
 export default mainReducer.reducer

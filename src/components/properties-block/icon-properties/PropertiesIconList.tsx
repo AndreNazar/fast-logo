@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { setTextAlign, setTextColor, setTextSize, setTextText } from "../../../redux/mainReducer"
+import { setIconAlign, setIconColor, setIconSize, setTextAlign, setTextColor, setTextSize, setTextText } from "../../../redux/mainReducer"
 
 const PropertiesIconList = () => {
 
@@ -23,11 +23,11 @@ const PropertiesIconList = () => {
         case "type":
           return <p className="value">{iconProperties[key]}</p>
         case "color":
-          return <input className="value color-input" value={iconProperties[key]} onChange={(e) => dispatch(setTextColor(e.target.value))} />
+          return <input className="value color-input" value={iconProperties[key]} onChange={(e) => dispatch(setIconColor(e.target.value))} />
         case "size":
-          return <input className="value width-input" type="number" min="0" max="200" value={iconProperties[key]} onChange={(e) => dispatch(setTextSize(e.target.value))} />
+          return <input className="value width-input" type="number" min="0" max="200" value={iconProperties[key]} onChange={(e) => dispatch(setIconSize(e.target.value))} />
         case "align":
-          return <select value={iconProperties[key]} onChange={(e) => dispatch(setTextAlign(e.target.value))} className="value width-input">
+          return <select value={iconProperties[key]} onChange={(e) => dispatch(setIconAlign(e.target.value))} className="value width-input">
             <option value="left-top">left-top</option>
             <option value="top">top</option>
             <option value="right-top">right-top</option>

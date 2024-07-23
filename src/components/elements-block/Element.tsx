@@ -15,6 +15,12 @@ const Element = ({element}: any) => {
     function isType(type: typeof BackgroundTypes | typeof IconTypes | typeof TextTypes, value: string) {
       return Object.values(type).includes(value)
     }
+
+    function getSize(size:number) {
+      if(size <= 75) return 75
+      else if(size >= 130) return 130
+      else return size
+    }
     
     function getLayout() {
       const bp = {
@@ -33,7 +39,7 @@ const Element = ({element}: any) => {
       const ip = {
         type: element.type,
         fill: iconProperties.color,
-        size: +iconProperties.size + 50,
+        size: getSize(iconProperties.size),
         align: iconProperties.align,
       }
 
@@ -44,7 +50,9 @@ const Element = ({element}: any) => {
     }
 
     return <div className="element-wrapper" onClick={() => dispatch(selectElement(element))}>
+      <svg className="preview-field" xmlns="http://www.w3.org/2000/svg" width={215} height={215} viewBox="0 0 150 150">
       {getLayout()}
+      </svg>
     </div>
 }
 

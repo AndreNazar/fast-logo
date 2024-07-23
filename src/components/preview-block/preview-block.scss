@@ -17,17 +17,23 @@
         gap: 1em;
         .preview-field{
             position: relative;
-            width: 50vh;
-            height: 50vh;
+            width: 280px;
+            height: 280px;
             background-color: $color3;
             padding: .5em;
             box-sizing: border-box;
             svg{
                 position: absolute;
             }
-            .visual-text, .visual-background{
+            .visual-background{
                 width: calc(100% - 1em);
                 height: calc(100% - 1em);
+            }
+            .visual-icon{
+                
+                path{
+                    width: 10px;
+                }
             }
         }
         .preview-navigation{

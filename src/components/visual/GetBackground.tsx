@@ -11,7 +11,7 @@ const GetBackground = ({ bp }: { bp: Ibp }) => {
   const OutputFigure = () => {
     switch (bp.type) {
       case BackgroundTypes.CIRCLE:
-        return <circle fill={bp.fill} stroke={bp.stroke} strokeWidth={bp.strokeWidth} cx={75 - bp.strokeWidth / 2} cy={75 - bp.strokeWidth / 2} r={75 - bp.strokeWidth / 2} />
+        return <circle fill={bp.fill} stroke={bp.stroke} strokeWidth={bp.strokeWidth} cx={75} cy={75} r={75} />
       case BackgroundTypes.SQUARE:
         return <rect fill={bp.fill} stroke={bp.stroke} strokeWidth={bp.strokeWidth} x={0} y={0} width={150} height={150} />
       case BackgroundTypes.SQUIRCLE:
@@ -23,15 +23,7 @@ const GetBackground = ({ bp }: { bp: Ibp }) => {
     }
   }
 
-  return (
-    <svg className={"element visual-background"} xmlns="http://www.w3.org/2000/svg" viewBox={
-        "-" + (bp.strokeWidth/2) + 
-        " -" + (bp.strokeWidth/2) + 
-        " " + (+bp.strokeWidth + 150) + 
-        " " + (+bp.strokeWidth + 150)}>
-      <OutputFigure />
-    </svg>
-  )
+  return (<OutputFigure />)
 }
 
 export default GetBackground
