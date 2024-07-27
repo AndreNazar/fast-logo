@@ -3,7 +3,7 @@
 
 .preview-container{
     width: 100%;
-    height: calc(70vh - .5em);
+    height: 100vh;
     background-color: $color1;
     font-family: 'Montserrat';
     .preview-wrapper{
@@ -12,57 +12,53 @@
         height: 100%;
         box-sizing: border-box;
         justify-content: center;
-        align-items: center;
+        align-content: center;
         justify-items: center;
         gap: 1em;
+        .circle-maket{
+            polygon{
+            }
+        }
         .preview-field{
-            position: relative;
-            width: 280px;
-            height: 280px;
-            background-color: $color3;
-            padding: .5em;
-            box-sizing: border-box;
-            svg{
-                position: absolute;
-            }
-            .visual-background{
-                width: calc(100% - 1em);
-                height: calc(100% - 1em);
-            }
-            .visual-icon{
-                
-                path{
-                    width: 10px;
-                }
-            }
+            align-self: flex-end;
         }
         .preview-navigation{
             display: flex;
+            width: 100%;
             justify-content: space-between;
-            align-items: center;
-            align-content: center;
-            gap: 1em;
-            .name-input{
-                font-family: 'Montserrat';
-                font-size: 18px;
-                outline: none;
-                align-self: stretch;
-                background-color: $color3;
-                border: 1px solid #99a;
-                color: #567;
-                border-radius: 10px;
-                padding: .2em .5em;
-            }
-            .download-button{
+            align-self: flex-start;
+            gap: .8em;
+            .button{
                 background-color: $color2;
                 color: $color3;
                 padding: .5em 1em;
                 border-radius: 5px;
+                gap: .2em;
                 display: flex;
                 align-items: center;    
                 justify-content: center;
                 cursor: pointer;
+                user-select: none;
             }
+            
+            .download-button{
+                background-color: $color5;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            .generate-button{
+                margin-left: -.5em;
+                width: 100%;
+                background-color: $color5;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+            .palette-button{
+                background-color: $color2;
+            }
+        }
+        canvas{
+            background-color: $color3;
         }
     }
 

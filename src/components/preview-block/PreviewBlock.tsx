@@ -1,25 +1,19 @@
-import { useCallback, useEffect, useState } from "react"
+import { Ref, useRef, useState } from "react"
 import "./preview-block.scss"
-import SVGUpdater from "./SVGUpdater"
-import html2canvas from "html2canvas"
+import PreviewNavigation from "./navigation-block/PreviewNavigation"
+import Logo from "./logo-block/Logo"
+import { TSelectedMaket } from "../../types"
 
 function PreviewBlock() {
 
-  const [refField, setRefField]: any = useState()
-
-  const downloadFile = useCallback(() => {
-  }, [refField])
-
-  useEffect(() => {},[])
+  const refField: Ref<SVGSVGElement> = useRef(null)
+  const [selectedMaket, setSelectedMaket] = useState<TSelectedMaket>({type: -1, generatePoints: []})
+  const [mainColor, setMainColor] = useState<string>('')
 
     return <div className="preview-container">
       <div className="preview-wrapper">
-        <canvas id="myCanvas" width="200" height="200" />
-        <SVGUpdater setRefField={setRefField}/>
-        <div className="preview-navigation">
-          <input className="name-input" placeholder="Название файла" type="text" /> 
-          <div onClick={() => downloadFile()} className="download-button">Скачать</div>
-        </div>
+        <Logo mainColor={mainColor} selectedMaket={selectedMaket} refField={refField}/>
+        <PreviewNavigation setMainColor={setMainColor} setSelectedMaket={setSelectedMaket} />
       </div>
     </div>
   }
