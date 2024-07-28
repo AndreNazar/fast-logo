@@ -27,7 +27,7 @@
             width: 100%;
             justify-content: space-between;
             align-self: flex-start;
-            gap: .8em;
+            gap: .5em;
             .button{
                 background-color: $color2;
                 color: $color3;
@@ -41,13 +41,13 @@
                 user-select: none;
             }
             
-            .download-button{
+            .back-button{
                 background-color: $color5;
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
             }
             .generate-button{
-                margin-left: -.5em;
+                margin-left: -.2em;
                 width: 100%;
                 background-color: $color5;
                 border-top-left-radius: 0;

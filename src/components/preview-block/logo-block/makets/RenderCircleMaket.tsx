@@ -3,7 +3,7 @@ import { TSelectedMaket } from "../../../../types"
 
 type TProperties = number
 
-const RenderCirleMaket = ({ mainColor, selectedMaket }: { mainColor: string, selectedMaket: TSelectedMaket }) => {
+const RenderCirleMaket = ({ selectedMaket }: { selectedMaket: TSelectedMaket }) => {
     
   const x: number = 250
   const y: number = 250
@@ -19,7 +19,7 @@ const RenderCirleMaket = ({ mainColor, selectedMaket }: { mainColor: string, sel
   }, [])
 
   return properties.map((p, i) => <polygon key={i}
-  fill={mainColor} 
+  fill={selectedMaket.color} 
   transform={`translate(${x}, ${y}) rotate(${p}, ${x}, ${y})`} 
   points={points} />)
 }

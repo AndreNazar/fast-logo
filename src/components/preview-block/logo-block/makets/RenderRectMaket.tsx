@@ -8,7 +8,7 @@ type TProperties = {
     points: number[]
 }
 
-const RenderRectMaket = ({ mainColor, selectedMaket }: { mainColor: string, selectedMaket: TSelectedMaket }) => {
+const RenderRectMaket = ({ selectedMaket }: { selectedMaket: TSelectedMaket }) => {
     
   const x: number = 250
   const y: number = 250
@@ -33,7 +33,7 @@ const RenderRectMaket = ({ mainColor, selectedMaket }: { mainColor: string, sele
   }, [])
 
   return isLoad ? properties.map((props, i) => <polygon key={i}
-  fill={mainColor} 
+  fill={selectedMaket.color} 
   transform={`translate(${props.x}, ${props.y}) rotate(${props.deg}, ${props.x}, ${props.y})`} 
   points={getPolygonPoints(props.points)} />)
   : <></>

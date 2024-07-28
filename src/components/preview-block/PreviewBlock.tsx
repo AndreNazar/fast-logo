@@ -1,19 +1,23 @@
-import { Ref, useRef, useState } from "react"
+import { Ref, useState } from "react"
 import "./preview-block.scss"
 import PreviewNavigation from "./navigation-block/PreviewNavigation"
 import Logo from "./logo-block/Logo"
 import { TSelectedMaket } from "../../types"
 
 function PreviewBlock() {
-
-  const refField: Ref<SVGSVGElement> = useRef(null)
-  const [selectedMaket, setSelectedMaket] = useState<TSelectedMaket>({type: -1, generatePoints: []})
-  const [mainColor, setMainColor] = useState<string>('')
+  const [refField, setRefField] = useState<Ref<SVGSVGElement>>(null)
+  const [selectedMaket, setSelectedMaket] = useState<TSelectedMaket>({type: -1, generatePoints: [], color: "#000000"})
+  const [prevMaket, setPrevMaket] = useState<TSelectedMaket>({type: -1, generatePoints: [], color: "#000000"})
 
     return <div className="preview-container">
       <div className="preview-wrapper">
-        <Logo mainColor={mainColor} selectedMaket={selectedMaket} refField={refField}/>
-        <PreviewNavigation setMainColor={setMainColor} setSelectedMaket={setSelectedMaket} />
+        <Logo selectedMaket={selectedMaket} setRefField={setRefField}/>
+        <PreviewNavigation 
+        refField={refField} 
+        selectedMaket={selectedMaket}
+        setSelectedMaket={setSelectedMaket}
+        prevMaket={prevMaket} 
+        setPrevMaket={setPrevMaket} />
       </div>
     </div>
   }
