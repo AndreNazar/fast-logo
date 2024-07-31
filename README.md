@@ -3,4 +3,4 @@
 
 В приложении есть возможность сгенерировать логотип, поменять его цвет и скачать его.
 
-Демо: https://andrenazar.github.io/fast-logo/
+[Демо](https://andrenazar.github.io/fast-logo/)
