@@ -4,62 +4,29 @@
 .preview-container{
     width: 100%;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $color1;
     font-family: 'Montserrat';
+    overflow: hidden;
     .preview-wrapper{
         display: grid;
         padding: 1em;
-        height: 100%;
+        width: 300px;
         box-sizing: border-box;
         justify-content: center;
         align-content: center;
         justify-items: center;
         gap: 1em;
-        .circle-maket{
-            polygon{
-            }
-        }
-        .preview-field{
-            align-self: flex-end;
-        }
-        .preview-navigation{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-self: flex-start;
-            gap: .5em;
-            .button{
-                background-color: $color2;
-                color: $color3;
-                padding: .5em 1em;
-                border-radius: 5px;
-                gap: .2em;
-                display: flex;
-                align-items: center;    
-                justify-content: center;
-                cursor: pointer;
-                user-select: none;
-            }
-            
-            .back-button{
-                background-color: $color5;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
-            .generate-button{
-                margin-left: -.2em;
-                width: 100%;
-                background-color: $color5;
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
-            .palette-button{
-                background-color: $color2;
-            }
-        }
-        canvas{
-            background-color: $color3;
-        }
+        
+        
     }
 
+}
+
+@media screen and (max-width: 340px) {
+    .preview-wrapper{
+        width: 100%;
+    }
 }

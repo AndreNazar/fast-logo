@@ -1,10 +1,11 @@
 import Button from "./Button"
+import "./preview-navigation.scss"
 
 const PreviewNavigation = ({selectedMaket, setSelectedMaket, refField, prevMaket, setPrevMaket}: any) => {
     
   const globalColors:string[] = [
     "#9c93e5",
-    "#ffb11e",
+    "#c28617",
     "#eb9196",
     "#221831",
     "#161515",
@@ -12,7 +13,7 @@ const PreviewNavigation = ({selectedMaket, setSelectedMaket, refField, prevMaket
     "#20725f",
     "#f69f32",
     "#ce9fe4",
-    "#98f8dd",
+    "#98c8bd",
     "#e0e244",
     "#5a6525",
     "#d3b868",
@@ -26,9 +27,9 @@ const PreviewNavigation = ({selectedMaket, setSelectedMaket, refField, prevMaket
     "#00a18e",
     "#555555",
     "#8c6469",
-    "#e2dda2",
-    "#decd9c",
-    "#ffaeab",
+    "#b2ad72",
+    "#ad9856",
+    "#bf8280",
     "#5d8870",
     "#912425",
     "#cc7138",
@@ -50,10 +51,12 @@ const PreviewNavigation = ({selectedMaket, setSelectedMaket, refField, prevMaket
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
+
   }
 
   const generateLogo = () => {
-    const type = Math.floor(Math.random() * 3)
+    const type = Math.floor(Math.random() * 5)
+    //const type = 4
     let generatePoints:number[] = []
 
     switch (type) {
@@ -64,34 +67,52 @@ const PreviewNavigation = ({selectedMaket, setSelectedMaket, refField, prevMaket
         for (let i = 0; i < 8; i++) generatePoints.push(Math.random() * (220 - 0 + 1) + 0)
       break;
       case 2:
-        for (let i = 0; i < 14; i++) generatePoints.push(Math.random() * (220 - 0 + 1) + 0)
+        for (let i = 0; i < 15; i++) generatePoints.push(Math.random() * (250 - 0 + 1) + 0)
+        break;
+      case 3:
+        for (let i = 0; i < 15; i++) generatePoints.push(Math.random() * (300 - 0 + 1) + 0)
+      break;
+      case 4:
+        for (let i = 0; i < 17; i++) generatePoints.push(Math.random() * (250 - 0 + 1) + 0)
       break;
       default:break;
     }
 
-    setPrevMaket(selectedMaket)
+    setPrevMaket({...selectedMaket, status: "prev"})
     setSelectedMaket({
       type, 
       generatePoints, 
-      color: globalColors[Math.floor(Math.random() * (globalColors.length - 0 + 1) + 0)]
+      color: globalColors[Math.floor(Math.random() * (globalColors.length - 0 + 1) + 0)],
+      status: "new"
     })
   }
 
   const updatePalette = () => {
+    const getStatus = () => {
+      if(selectedMaket.status === "new" || selectedMaket.status === "change_color_new") return "change_color_new"
+      else if(selectedMaket.status === "next" || selectedMaket.status === "change_color_next") return "change_color_next"
+      else if(selectedMaket.status === "prev" || selectedMaket.status === "change_color_prev") return "change_color_prev"
+    }
     setSelectedMaket({
       ...selectedMaket,
-      color: globalColors[Math.floor(Math.random() * (globalColors.length - 0 + 1) + 0)]
+      color: globalColors[Math.floor(Math.random() * (globalColors.length - 0 + 1) + 0)],
+      status: getStatus()
     })
   }
 
   const prevLogoHandler = () => {
-    setPrevMaket(selectedMaket)
-    setSelectedMaket(prevMaket)
+    if(prevMaket.type !== -1){
+      if(prevMaket.status === "new" || prevMaket.status === "change_color_new" || prevMaket.status === "change_color_next") 
+        setSelectedMaket({...prevMaket, status: "next"})
+      else if (prevMaket.status === "change_color_prev") setSelectedMaket({...prevMaket, status: "prev"})
+      else setSelectedMaket(prevMaket)
+      setPrevMaket(selectedMaket)
+    }
   }
 
   return (
     <div className="preview-navigation">
-      <Button title="" onClick={() => prevLogoHandler()} className="back-button button" typeIcon={4} />
+      <Button title="" onClick={() => prevLogoHandler()} className={"back-button button" + (selectedMaket.status === "prev" ? " rotate-button" : "")} typeIcon={4} />
       <Button title="Сгенерировать" onClick={() => generateLogo()} className="generate-button button" typeIcon={2} />
       <Button title="" onClick={() => downloadFile()} className="download-button button" typeIcon={1} />
       <Button title="" onClick={() => updatePalette()} className="palette-button button" typeIcon={3} />

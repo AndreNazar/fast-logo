@@ -1,7 +1,11 @@
+import { useState } from "react"
+
 const Button = (
     {title, onClick, typeIcon, className}:
     {title: string, onClick: () => void, typeIcon: number, className: string}
     ) => {
+
+      const [lockedButton, setLockedButton] = useState(true)
 
     const getPathIcon = (): string => {
         switch (typeIcon) {
@@ -13,12 +17,20 @@ const Button = (
         }
     }
 
-    return <div onClick={onClick} className={className}>
+    const disabledHandler = () => {
+      setLockedButton(false)
+      const timer = setTimeout(() => {
+        setLockedButton(true)
+        clearTimeout(timer)
+      }, 400);
+    }
+
+    return <button onClick={() => {onClick(), disabledHandler() }} className={className} disabled={!lockedButton}>
     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
       <path d={getPathIcon()} />
     </svg>
     {title}
-  </div>
+  </button>
 }
 
 export default Button

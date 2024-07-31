@@ -1,0 +1,90 @@
+@import "../../../styles/palette.scss";
+
+.maket{
+    opacity: 1;
+    transition: .1s;
+    animation: start-animation .2s 1;
+}
+.new-color{
+    transform: scale(1.04);
+}
+.maket-animate-new{
+    opacity: 0;
+    transform: translateX(-10%);
+}
+.maket-animate-prev{
+    opacity: 0;
+    transform: translateX(+10%);
+}
+.new-maket{
+    opacity: 0;
+    transform: translateX(+10%);
+}
+.prev-maket{
+    opacity: 0;
+    transform: translateX(-10%);
+}
+.empty-maket{
+    text-align: center;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    padding: 2em;
+    height: 320px;
+    box-sizing: border-box;
+    transition: .5s;
+    svg{
+        transition: .2s ease-in-out;
+    }
+    p{
+        margin: 0;
+        font-size: 18px;
+        color: $color2;
+    }
+    
+    &.started{
+        opacity: 0;
+        transform: translateY(-40%);
+        svg{
+            transform: translateY(-40%);
+        }
+    }
+}
+
+
+@keyframes start-animation {
+    0%{
+        opacity: 0;
+        transform: translateY(40%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+
+@media screen and (max-width: 340px) {
+    .empty-maket{
+        padding: 1em;
+    }
+}
+
+
+@media screen and (max-width: 260px) {
+    .empty-maket{
+        padding: 1em;
+        p{
+            font-size: 14px;
+        }
+    }
+}
+
+@media screen and (max-width: 200px) {
+    .empty-maket{
+        padding: .5em;
+        p{
+            font-size: 12px;
+        }
+    }
+}
